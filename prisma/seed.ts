@@ -7,7 +7,8 @@ async function main(){
         data:{
             name: 'John Doe',
             email: 'johndoe@gmail.com',
-            avatarUrl: 'https://github.com/szheron.png'
+            avatarUrl: 'https://github.com/szheron.png',
+            googleId: '432832187321783287'
         }
     })
 
@@ -18,7 +19,7 @@ async function main(){
             ownerId: user.id,
             participants: {
                 create: {
-                    userId: user.id
+                    userId: user.id,
                 }
             }
         }
