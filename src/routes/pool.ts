@@ -52,7 +52,7 @@ export async function poolRoutes(fastify: FastifyInstance){
         const { code } = joinPoolBody.parse(request.body)
         const pool = await prisma.pool.findUnique({
             where:{
-                id: code
+                code: code
             },
             include:{
                 participants:{
@@ -62,14 +62,15 @@ export async function poolRoutes(fastify: FastifyInstance){
                 }
             }
         })
+
         if(!pool){
             return reply.status(400).send({
-                message: 'Pool not found'
+                message: 'Pool not found.'
             })
         }
         if(pool.participants.length > 0){
             return reply.status(400).send({
-                message: 'You already joined this pool'
+                message: 'You already joined this pool.'
             })
         }
 
@@ -115,7 +116,8 @@ export async function poolRoutes(fastify: FastifyInstance){
                         id: true,
                         User: {
                             select: {
-                                avatarUrl: true
+                                avatarUrl: true,
+                                name: true
                             }
                         }
                     },
@@ -154,7 +156,8 @@ export async function poolRoutes(fastify: FastifyInstance){
                         id: true,
                         User: {
                             select: {
-                                avatarUrl: true
+                                avatarUrl: true,
+                                name: true
                             }
                         }
                     },

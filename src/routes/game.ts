@@ -25,10 +25,11 @@ export async function gameRoutes(fastify: FastifyInstance){
                 }
             }
         })
+
         return {
             games: games.map(game => {
                 return {
-                    ...games, 
+                    ...game, 
                     guess: game.guesses.length > 0 ? game.guesses[0] : null,
                     guesses: undefined
                 }
@@ -87,12 +88,6 @@ export async function gameRoutes(fastify: FastifyInstance){
         if(!game){
             return reply.status(400).send({
                 message: "Game not found."
-            })
-        }
-
-        if(game.date < new Date()){
-            return reply.status(400).send({
-                message: "You cannot send guesses after the game date."
             })
         }
 

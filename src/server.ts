@@ -30,7 +30,7 @@ async function Bootstrap(){
     await fastify.register(authRoutes);
     await fastify.register(gameRoutes);
 
-    await fastify.listen({port: 3333, /*host: '0.0.0.0'*/});
+    await fastify.listen({port: 3333, host: '0.0.0.0'});
 }
 
 Bootstrap(); 
